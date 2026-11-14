@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi tienda</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500&family=Tajawal:wght@400;500&display=swap');
+
+    :root{--navy:#14293D;--gold:#C8A24A;--ivory:#F7F1E5;--red:#8E3B2F;--silver:#B8BCC2;
+    --hf:'Cormorant Garamond',Georgia,serif;--bf:'Montserrat',system-ui,sans-serif;
+    --fl:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Cg fill='none' stroke='%23C8A24A' stroke-width='.8'%3E%3Cellipse rx='7' ry='24' cy='-20'/%3E%3Cellipse rx='7' ry='24' cy='-20' transform='rotate(45)'/%3E%3Cellipse rx='7' ry='24' cy='-20' transform='rotate(90)'/%3E%3Cellipse rx='7' ry='24' cy='-20' transform='rotate(135)'/%3E%3Cellipse rx='7' ry='24' cy='-20' transform='rotate(180)'/%3E%3Cellipse rx='7' ry='24' cy='-20' transform='rotate(225)'/%3E%3Cellipse rx='7' ry='24' cy='-20' transform='rotate(270)'/%3E%3Cellipse rx='7' ry='24' cy='-20' transform='rotate(315)'/%3E%3Ccircle r='7'/%3E%3Ccircle r='2.5'/%3E%3C/g%3E%3C/svg%3E")}
+    html[lang=ar]{--hf:'Amiri',Georgia,serif;--bf:'Tajawal',system-ui,sans-serif}
+    *{box-sizing:border-box;margin:0}
+    html{scroll-behavior:smooth;scroll-padding-top:70px}
+    body{font-family:var(--bf);background:var(--ivory);color:var(--navy);line-height:1.7}
+    h1,h2,h3,.logo{font-family:var(--hf);font-weight:600;line-height:1.15}
+    a{color:inherit}
+    :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+    .bar{position:sticky;top:0;z-index:5;background:var(--navy);color:var(--ivory);display:flex;align-items:center;gap:14px;padding:10px 20px;flex-wrap:wrap}
+    .logo{font-size:1.45rem;color:var(--gold);letter-spacing:.1em;text-decoration:none}
+    nav{display:flex;gap:16px;flex:1;flex-wrap:wrap;font-size:.85rem}
+    nav a{text-decoration:none;opacity:.9}
+    .lang{display:flex;align-items:center;gap:2px;font-size:.85rem}
+    .lang button{background:none;border:0;border-bottom:1px solid transparent;color:var(--ivory);cursor:pointer;font:inherit;padding:2px 6px}
+    .lang button.on{color:var(--gold);border-color:var(--gold)}
+    .btn,.cb{background:var(--gold);color:var(--navy);border:0;border-radius:3px;padding:10px 20px;cursor:pointer;font:inherit;font-weight:500;text-decoration:none;display:inline-block}
+    .cb{border-radius:20px;padding:6px 14px;font-size:.85rem}
+    .btn.line{background:none;border:1px solid var(--navy)}
+    .hero{background:var(--navy);color:var(--ivory);display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:32px;padding:56px 5vw}
+    .hero h1{font-size:clamp(2.3rem,5vw,4rem);margin:8px 0 16px}
+    .hero p{max-width:46ch;margin-bottom:24px}
+    .tag{font-family:var(--hf);font-size:1.3rem;color:var(--gold)}
+    .ph{background:var(--navy) var(--fl) center/62% no-repeat;position:relative;aspect-ratio:1;overflow:hidden}
+    .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hi{border:1px solid var(--gold);border-radius:50% 50% 4px 4px}
+    .sec{padding:60px 5vw;max-width:1100px;margin:auto}
+    .sec h2{font-size:2.2rem;margin-bottom:8px}
+    .sec>p{margin-bottom:28px;max-width:60ch}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+    .card{background:#fff;border:1px solid #e6dcc4}
+    .card .in{padding:16px}
+    .card h3{font-size:1.35rem}
+    .price{color:var(--red);font-weight:500;margin:6px 0 12px}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+    .his{background:#fff}
+    .his .sec>p{font-size:1.1rem;font-family:var(--hf);max-width:62ch;border-inline-start:3px solid var(--gold);padding-inline-start:20px}
+    .ar{background:var(--gold);text-align:center}
+    .ar .sec{max-width:700px}
+    .ar .sec>p{margin-inline:auto}
+    .ar .btn{background:var(--navy);color:var(--ivory)}
+    .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px}
+    .cols div{border-top:2px solid var(--gold);padding-top:12px}
+    .cols p{margin:0}
+    form{display:grid;gap:12px;max-width:520px}
+    input,textarea{font:inherit;padding:10px;border:1px solid var(--silver);background:#fff;color:var(--navy);width:100%}
+    .info{font-size:.9rem;margin-bottom:16px}
+    footer{background:var(--navy);color:var(--silver);text-align:center;padding:28px 5vw;font-size:.85rem}
+    footer a{color:var(--gold);margin:0 8px}
+    dialog{width:min(92vw,560px);border:0;border-radius:4px;padding:22px;background:var(--ivory);color:var(--navy)}
+    dialog::backdrop{background:rgba(20,41,61,.6)}
+    dialog ul{margin:12px 0;padding-inline-start:20px;font-size:.92rem}
+    .it{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #e6dcc4;font-size:.92rem}
+    .tot{display:flex;justify-content:space-between;font-weight:500;margin:14px 0}
+    .note{font-size:.8rem;color:var(--red)}
+    @media(max-width:760px){.hero{grid-template-columns:1fr;padding:36px 6vw}.hi{max-width:320px;margin:auto}.sec{padding:44px 6vw}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}} 
+  </style>
+</head>
+<body>
+  <header class="bar">
+  <a class="logo" href="#top">ZAHRA MOMPOX</a>
+  <nav>
+  <a href="#col" data-i="nCol"></a><a href="#his" data-i="nHis"></a><a href="#ship" data-i="nShip"></a><a href="#con" data-i="nCon"></a>
+  </nav>
+  <div class="lang" role="group" aria-label="Language">
+  <button data-l="es">ES</button><span>|</span><button data-l="en">EN</button><span>|</span><button data-l="ar">AR</button>
+  </div>
+  <button class="cb" id="cb"></button>
+  </header>
+
+  <section class="hero" id="top">
+  <div>
+  <p class="tag" data-i="tag"></p>
+  <h1 data-i="h1"></h1>
+  <p data-i="hsub"></p>
+  <a class="btn" href="#col" data-i="cta"></a>
+  </div>
+  <div class="ph hi"><img src="img/hero.jpg" alt="Zahra Mompox" onerror="this.remove()"></div>
+  </section>
+
+  <section class="sec" id="col">
+  <h2 data-i="colT"></h2>
+  <p data-i="colS"></p>
+  <div class="grid" id="grid"></div>
+  </section>
+
+  <div class="his" id="his"><section class="sec">
+  <h2 data-i="hisT"></h2>
+  <p data-i="his"></p>
+  </section></div>
+
+  <div class="ar"><section class="sec">
+  <h2 data-i="arT"></h2>
+  <p data-i="arS"></p>
+  <a class="btn" id="arl" target="_blank" rel="noopener" data-i="arB"></a>
+  </section></div>
+
+  <section class="sec" id="ship">
+  <h2 data-i="shipT"></h2>
+  <div class="cols">
+  <div><h3 data-i="s1T"></h3><p data-i="s1"></p></div>
+  <div><h3 data-i="s2T"></h3><p data-i="s2"></p></div>
+  <div><h3 data-i="s3T"></h3><p data-i="s3"></p></div>
+  </div>
+  </section>
+
+  <div class="his"><section class="sec" id="con">
+  <h2 data-i="conT"></h2>
+  <p class="info">hello@zahramompox.example &nbsp;·&nbsp; +971 4 000 0000</p>
+  <form id="cf">
+  <input data-p="nm" required>
+  <input type="email" data-p="em" required>
+  <textarea rows="4" data-p="ms" required></textarea>
+  <button class="btn" data-i="send"></button>
+  </form>
+  </section></div>
+
+  <footer>
+  <p><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">WhatsApp</a></p>
+  <p data-i="foot"></p>
+  </footer>
+
+  <dialog id="pd"></dialog>
+  <dialog id="ct"></dialog>
+
+  <script>
+    const AR_URL='https://REEMPLAZA-CON-TU-ENLACE-AR';
+    const T={
+    es:{nCol:'Colección',nHis:'Nuestra historia',nShip:'Envíos y pagos',nCon:'Contacto',cart:'Carrito',
+    tag:'Un hilo entre dos mundos',h1:'Oro tejido a mano, de Mompox a Emiratos',
+    hsub:'Joyas de filigrana en oro de 18K con certificado de oro de origen responsable. El regalo que une dos culturas.',cta:'Ver la colección',
+    colT:'Colección',colS:'Tres piezas hechas a mano. Precios en dirhams, IVA incluido.',view:'Ver detalle',add:'Agregar al carrito',
+    n1:'Dije Flor de Mompox',n2:'Aretes Hilo de Zahra',n3:'Collar Un hilo entre dos mundos',
+    d1:'Flor de ocho pétalos en filigrana de oro de 18K. 1,5 g.',d2:'Aretes de gota con filigrana floral en oro de 18K. 3 g el par.',d3:'Dije de flor con una pequeña esmeralda colombiana. Oro de 18K, 6 g.',
+    f1:'Oro amarillo de 18K con sello de pureza',f2:'Certificado de oro de origen responsable',f3:'Caja azul noche, certificado de autenticidad y tarjeta bilingüe',f4:'Hecha a mano por orfebres de Mompox',
+    engL:'Grabado del nombre en árabe (opcional)',engP:'Ej.: نور',
+    hisT:'Nuestra historia',his:'Hace más de cuatrocientos años, la técnica de la filigrana viajó del mundo árabe a España y de allí a las orillas del río Magdalena, en Santa Cruz de Mompox, Patrimonio de la Humanidad. Allí, familias de orfebres tejen el oro hilo a hilo. Zahra Mompox lleva esa herencia compartida de vuelta a sus orígenes: cada pieza es hecha a mano, única, en oro de origen responsable.',
+    arT:'Míralas en tu espacio',arS:'Mira la joya en 3D sobre tu mesa o en tu mano antes de comprar.',arB:'Ver en tu espacio',
+    shipT:'Envíos y pagos',s1T:'Envío asegurado',s1:'Entrega con firma desde nuestro inventario en Dubái, en 1 a 3 días hábiles. Envío gratis.',
+    s2T:'Medios de pago',s2:'Tarjetas Visa y Mastercard, Apple Pay y pago en 4 cuotas sin interés.',
+    s3T:'Devoluciones',s3:'14 días para devolver piezas sin grabado. IVA de 5% incluido en todos los precios.',
+    conT:'Contacto',nm:'Nombre',em:'Correo electrónico',ms:'Mensaje',send:'Enviar mensaje',thanks:'Gracias, te escribiremos pronto. (Simulación)',
+    cartT:'Tu carrito',empty:'Tu carrito está vacío. Agrega una pieza de la colección.',sub:'Subtotal',shp:'Envío',free:'Gratis',tot:'Total (IVA incluido)',pay:'Finalizar compra',sim:'Simulación: no se realiza ningún cobro.',rm:'Quitar',close:'Cerrar',eng:'Grabado',
+    foot:'Marca ficticia creada para un ejercicio académico. Universidad de San Buenaventura, Bogotá.'},
+    en:{nCol:'Collection',nHis:'Our story',nShip:'Shipping & payments',nCon:'Contact',cart:'Cart',
+    tag:'A thread between two worlds',h1:'Hand-woven gold, from Mompox to the Emirates',
+    hsub:'18K gold filigree jewellery with a responsibly sourced gold certificate. The gift that unites two cultures.',cta:'Shop the collection',
+    colT:'Collection',colS:'Three handmade pieces. Prices in dirhams, VAT included.',view:'View details',add:'Add to cart',
+    n1:'Flower of Mompox Pendant',n2:'Zahra Thread Earrings',n3:'A Thread Between Two Worlds Necklace',
+    d1:'Eight-petal flower in 18K gold filigree. 1.5 g.',d2:'Drop earrings with floral filigree in 18K gold. 3 g per pair.',d3:'Flower pendant with a small Colombian emerald. 18K gold, 6 g.',
+    f1:'18K yellow gold with purity hallmark',f2:'Responsibly sourced gold certificate',f3:'Midnight-blue box, certificate of authenticity and bilingual card',f4:'Handmade by Mompox goldsmiths',
+    engL:'Name engraving in Arabic (optional)',engP:'e.g. نور',
+    hisT:'Our story',his:'More than four hundred years ago, the art of filigree travelled from the Arab world to Spain, and from there to the banks of the Magdalena River in Santa Cruz de Mompox, a UNESCO World Heritage town. There, families of goldsmiths weave gold thread by thread. Zahra Mompox brings this shared heritage back to its roots: every piece is handmade and unique, in responsibly sourced gold.',
+    arT:'See it in your space',arS:'View the jewel in 3D on your table or on your hand before you buy.',arB:'View in your space',
+    shipT:'Shipping & payments',s1T:'Insured delivery',s1:'Signature delivery from our Dubai stock in 1 to 3 working days. Free shipping.',
+    s2T:'Payment methods',s2:'Visa and Mastercard, Apple Pay and pay in 4 interest-free instalments.',
+    s3T:'Returns',s3:'14 days to return pieces without engraving. 5% VAT included in all prices.',
+    conT:'Contact',nm:'Name',em:'Email',ms:'Message',send:'Send message',thanks:'Thank you, we will write back soon. (Simulation)',
+    cartT:'Your cart',empty:'Your cart is empty. Add a piece from the collection.',sub:'Subtotal',shp:'Shipping',free:'Free',tot:'Total (VAT included)',pay:'Checkout',sim:'Simulation: no payment is taken.',rm:'Remove',close:'Close',eng:'Engraving',
+    foot:'Fictional brand created for an academic exercise. Universidad de San Buenaventura, Bogotá.'},
+    ar:{nCol:'المجموعة',nHis:'قصتنا',nShip:'الشحن والدفع',nCon:'اتصل بنا',cart:'السلة',
+    tag:'خيط بين عالمين',h1:'ذهبٌ منسوج يدويًا، من مومبوكس إلى الإمارات',
+    hsub:'مجوهرات من الفيليغري بالذهب عيار 18 مع شهادة ذهب من مصدر مسؤول. هدية تجمع بين ثقافتين.',cta:'تصفّح المجموعة',
+    colT:'المجموعة',colS:'ثلاث قطع مصنوعة يدويًا. الأسعار بالدرهم شاملة ضريبة القيمة المضافة.',view:'عرض التفاصيل',add:'أضف إلى السلة',
+    n1:'دلاية زهرة مومبوكس',n2:'أقراط خيط زهرة',n3:'قلادة خيط بين عالمين',
+    d1:'زهرة من ثمانية بتلات بفيليغري الذهب عيار 18. ١٫٥ غ.',d2:'أقراط على شكل قطرة بفيليغري زهري من الذهب عيار 18. ٣ غ للزوج.',d3:'دلاية زهرة مع زمردة كولومبية صغيرة. ذهب عيار 18، ٦ غ.',
+    f1:'ذهب أصفر عيار 18 مع ختم النقاء',f2:'شهادة ذهب من مصدر مسؤول',f3:'علبة بلون أزرق ليلي، وشهادة أصالة، وبطاقة بلغتين',f4:'صناعة يدوية على أيدي صاغة مومبوكس',
+    engL:'نقش الاسم بالعربية (اختياري)',engP:'مثال: نور',
+    hisT:'قصتنا',his:'قبل أكثر من أربعمئة عام، انتقلت تقنية الفيليغري من العالم العربي إلى إسبانيا، ثم إلى ضفاف نهر ماغدالينا في سانتا كروز دي مومبوكس، المدرجة ضمن مواقع التراث العالمي. هناك تنسج عائلات الصاغة الذهب خيطًا بعد خيط. تعيد زهرة مومبوكس هذا الإرث المشترك إلى جذوره: كل قطعة مصنوعة يدويًا وفريدة، من ذهب ذي مصدر مسؤول.',
+    arT:'شاهدها في مكانك',arS:'شاهد القطعة بتقنية ثلاثية الأبعاد على طاولتك أو في يدك قبل الشراء.',arB:'شاهدها في مكانك',
+    shipT:'الشحن والدفع',s1T:'شحن مؤمَّن',s1:'التسليم بتوقيع المستلم من مخزوننا في دبي خلال ١ إلى ٣ أيام عمل. الشحن مجاني.',
+    s2T:'طرق الدفع',s2:'بطاقات فيزا وماستركارد، وApple Pay، والدفع على ٤ دفعات بدون فوائد.',
+    s3T:'الإرجاع',s3:'١٤ يومًا لإرجاع القطع غير المنقوشة. جميع الأسعار شاملة ضريبة القيمة المضافة ٥٪.',
+    conT:'اتصل بنا',nm:'الاسم',em:'البريد الإلكتروني',ms:'الرسالة',send:'إرسال الرسالة',thanks:'شكرًا لك، سنتواصل معك قريبًا. (محاكاة)',
+    cartT:'سلتك',empty:'سلتك فارغة. أضف قطعة من المجموعة.',sub:'المجموع الفرعي',shp:'الشحن',free:'مجاني',tot:'الإجمالي (شامل الضريبة)',pay:'إتمام الشراء',sim:'محاكاة: لن يتم تحصيل أي مبلغ.',rm:'إزالة',close:'إغلاق',eng:'النقش',
+    foot:'علامة تجارية افتراضية لتمرين أكاديمي. جامعة سان بوينافنتورا، بوغوتا.'}
+    };
+    const P=[{id:1,price:1850,img:'img/dije.jpg'},{id:2,price:3450,img:'img/aretes.jpg'},{id:3,price:7900,img:'img/collar.jpg'}];
+    let L='es',C=[];
+    try{L=localStorage.getItem('zl')||'es'}catch(e){}
+    if(!T[L])L='es';
+    const $=s=>document.querySelector(s),t=k=>T[L][k];
+    function fmt(n){
+      let s=String(n).replace(/\B(?=(\d{3})+(?!\d))/g,L==='es'?'.':',');
+      if(L==='ar')return s.replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]).replace(/,/g,'٬')+' د.إ';
+      return 'AED '+s;
+    }
+    function render(){
+      document.documentElement.lang=L;
+      document.documentElement.dir=L==='ar'?'rtl':'ltr';
+      document.title='Zahra Mompox · '+t('tag');
+      document.querySelectorAll('[data-i]').forEach(e=>e.textContent=t(e.dataset.i));
+      document.querySelectorAll('[data-p]').forEach(e=>e.placeholder=t(e.dataset.p));
+      document.querySelectorAll('[data-l]').forEach(b=>b.classList.toggle('on',b.dataset.l===L));
+      $('#arl').href=AR_URL;
+      $('#grid').innerHTML=P.map(p=>`<article class="card"><div class="ph"><img src="${p.img}" alt="${t('n'+p.id)}" onerror="this.remove()"></div><div class="in"><h3>${t('n'+p.id)}</h3><p>${t('d'+p.id)}</p><p class="price">${fmt(p.price)}</p><div class="row"><button class="btn line" onclick="detail(${p.id})">${t('view')}</button><button class="btn" onclick="add(${p.id},'')">${t('add')}</button></div></div></article>`).join('');
+      $('#cb').textContent=t('cart')+' ('+C.reduce((a,i)=>a+i.q,0)+')';
+      if($('#pd').open)detail($('#pd').dataset.id);
+      if($('#ct').open)cart();
+    }
+    function detail(id){
+      const p=P.find(x=>x.id==id),d=$('#pd');d.dataset.id=id;
+      d.innerHTML=`<div class="ph" style="aspect-ratio:16/10"><img src="${p.img}" alt="${t('n'+id)}" onerror="this.remove()"></div><h3 style="font-size:1.7rem;margin-top:14px">${t('n'+id)}</h3><p class="price">${fmt(p.price)}</p><p>${t('d'+id)}</p><ul><li>${t('f1')}</li><li>${t('f2')}</li><li>${t('f3')}</li><li>${t('f4')}</li></ul><label class="info" for="eg">${t('engL')}</label><input id="eg" placeholder="${t('engP')}" maxlength="20" style="margin:6px 0 14px"><div class="row"><button class="btn" onclick="add(${id},$('#eg').value.trim());$('#pd').close()">${t('add')}</button><button class="btn line" onclick="$('#pd').close()">${t('close')}</button></div>`;
+      if(!d.open)d.showModal();
+    }
+    function add(id,e){
+      const x=C.find(i=>i.id==id&&i.e==e);
+      x?x.q++:C.push({id,q:1,e});
+      render();cart();
+    }
+    function rm(k){C.splice(k,1);render();}
+    function cart(){
+      const d=$('#ct');
+      const tot=C.reduce((a,i)=>a+i.q*P.find(p=>p.id==i.id).price,0);
+      d.innerHTML=`<h3 style="font-size:1.7rem">${t('cartT')}</h3>`+(C.length?C.map((i,k)=>`<div class="it"><span>${t('n'+i.id)} × ${i.q}${i.e?'<br><small>'+t('eng')+': '+i.e.replace(/[<>&"]/g,'')+'</small>':''}</span><span>${fmt(i.q*P.find(p=>p.id==i.id).price)}<br><button class="note" style="background:none;border:0;cursor:pointer" onclick="rm(${k})">${t('rm')}</button></span></div>`).join('')+`<div class="it"><span>${t('sub')}</span><span>${fmt(tot)}</span></div><div class="it"><span>${t('shp')}</span><span>${t('free')}</span></div><div class="tot"><span>${t('tot')}</span><span>${fmt(tot)}</span></div><div class="row"><button class="btn" onclick="alert(t('sim'))">${t('pay')}</button><button class="btn line" onclick="$('#ct').close()">${t('close')}</button></div><p class="note" style="margin-top:10px">${t('sim')}</p>`:`<p style="margin:14px 0">${t('empty')}</p><button class="btn line" onclick="$('#ct').close()">${t('close')}</button>`);
+      if(!d.open)d.showModal();
+    }
+    document.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{L=b.dataset.l;try{localStorage.setItem('zl',L)}catch(e){}render()});
+    $('#cb').onclick=cart;
+    $('#cf').onsubmit=e=>{e.preventDefault();alert(t('thanks'));e.target.reset()};
+    render();
+  </script>
+</body>
+</html>
